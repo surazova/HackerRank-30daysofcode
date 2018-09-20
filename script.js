@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs');
+
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
 
@@ -22,23 +24,23 @@ function readLine() {
     return inputString[currentLine++];
 }
 
-// Complete the solve function below.
-function solve(mealCost, tipPercent, taxPercent) {
+// Complete the factorial function below.
+function factorial(n) {
+    for(var answer = 1; n > 0; n--){
+        answer*=n;
+    }
+    return answer;
 
-let tip = mealCost * tipPercent / 100;
-let tax = mealCost * taxPercent / 100;
- 
-let totalCost = Math.round(mealCost + tax + tip);
- 
-console.log("The total meal cost is " + totalCost + " dollars.");
 }
 
 function main() {
-    const meal_cost = parseFloat(readLine());
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
-    const tip_percent = parseInt(readLine(), 10);
+    const n = parseInt(readLine(), 10);
 
-    const tax_percent = parseInt(readLine(), 10);
+    let result = factorial(n);
 
-    solve(meal_cost, tip_percent, tax_percent);
+    ws.write(result + "\n");
+
+    ws.end();
 }
